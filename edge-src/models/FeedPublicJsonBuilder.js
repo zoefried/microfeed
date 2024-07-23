@@ -286,8 +286,13 @@ export default class FeedPublicJsonBuilder {
     return newItem;
   }
 
-  _addNextAndPrevUrls(item, existingitems, index) {
+  _addNextAndPrevUrls(item, existingitems) {
     if (existingitems.length < 2) {
+      return;
+    }
+
+    const index = existingitems.findIndex(element => element.id === item.id);
+    if (index < 0) {
       return;
     }
     
@@ -325,12 +330,12 @@ export default class FeedPublicJsonBuilder {
     const {items} = this.content;
     const existingitems = items || [];
     publicContent['items'] = [];
-    existingitems.forEach((item, index) => {
+    existingitems.forEach((item) => {
       if (![STATUSES.PUBLISHED, STATUSES.UNLISTED].includes(item.status)) {
         return;
       }
       this._decorateForItem(item, this.baseUrl);
-      this._addNextAndPrevUrls(item, existingitems, index);
+      this._addNextAndPrevUrls(item, existingitems);
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
       publicContent.items.push(newItem);
