@@ -275,9 +275,45 @@ export default class FeedPublicJsonBuilder {
     if (item.pubDateMs) {
       _microfeed['date_published_ms'] = item.pubDateMs;
     }
+    if (item.prevItemUrl) {
+      _microfeed['prev_item_url'] = item.prevItemUrl;
+    }
+    if (item.nextItemUrl) {
+      _microfeed['next_item_url'] = item.nextItemUrl;
+    }
 
     newItem['_microfeed'] = _microfeed;
     return newItem;
+  }
+
+  _addNextAndPrevUrls(item, existingitems, index) {
+    if (existingitems.length < 2) {
+      return;
+    }
+    
+    const newestToOldest = existingitems[0].pubDateMs > existingitems[1].pubDateMs;
+
+    if (index === 0) {
+      if (newestToOldest) {
+        item.nextItemUrl = existingitems[1].webUrl;
+      } else {
+        item.prevItemUrl = existingitems[1].webUrl;
+      }
+    } else if (index === existingitems.length - 1) {
+      if (newestToOldest) {
+        item.prevItemUrl = existingitems[1].webUrl;
+      } else {
+        item.nextItemUrl = existingitems[1].webUrl;
+      }
+    } else {
+      if (newestToOldest) {
+        item.nextItemUrl = existingitems[index + 1].webUrl;
+        item.prevItemUrl = existingitems[index - 1].webUrl;
+      } else {
+        item.nextItemUrl = existingitems[index - 1].webUrl;        
+        item.prevItemUrl = existingitems[index + 1].webUrl;
+      }
+    }
   }
 
   getJsonData() {
@@ -289,11 +325,12 @@ export default class FeedPublicJsonBuilder {
     const {items} = this.content;
     const existingitems = items || [];
     publicContent['items'] = [];
-    existingitems.forEach((item) => {
+    existingitems.forEach((item, index) => {
       if (![STATUSES.PUBLISHED, STATUSES.UNLISTED].includes(item.status)) {
         return;
       }
       this._decorateForItem(item, this.baseUrl);
+      this._addNextAndPrevUrls(item, existingitems, index);
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
       publicContent.items.push(newItem);
