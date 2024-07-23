@@ -287,6 +287,7 @@ export default class FeedPublicJsonBuilder {
   }
 
   _addNextAndPrevUrls(item, existingitems) {
+    console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
     if (existingitems.length < 2) {
       return;
     }
@@ -327,6 +328,7 @@ export default class FeedPublicJsonBuilder {
       ...this._buildPublicContentChannel(this.content),
     };
 
+    console.log('GETTING JSON DATA');
     const {items} = this.content;
     const existingitems = items || [];
     publicContent['items'] = [];
