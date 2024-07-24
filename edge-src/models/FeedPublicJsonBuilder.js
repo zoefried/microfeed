@@ -340,6 +340,8 @@ export default class FeedPublicJsonBuilder {
       // this._addNextAndPrevUrls(item, existingitems);
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
+      newItem['prev_item_url'] = item.prevItemUrl;
+      newItem['next_item_url'] = item.nextItemUrl;
       publicContent.items.push(newItem);
     })
 
