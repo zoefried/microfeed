@@ -281,8 +281,6 @@ export default class FeedPublicJsonBuilder {
     if (item.nextItemUrl) {
       _microfeed['next_item_url'] = item.nextItemUrl;
     }
-    console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
-
     newItem['_microfeed'] = _microfeed;
     return newItem;
   }
@@ -342,6 +340,8 @@ export default class FeedPublicJsonBuilder {
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
       console.log('Generating JSON for item:', newItem);
+      console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
+
       publicContent.items.push(newItem);
     })
 
