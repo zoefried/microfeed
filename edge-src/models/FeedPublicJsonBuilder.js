@@ -337,7 +337,7 @@ export default class FeedPublicJsonBuilder {
         return;
       }
       this._decorateForItem(item, this.baseUrl);
-      this._addNextAndPrevUrls(item, existingitems);
+      // this._addNextAndPrevUrls(item, existingitems);
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
       publicContent.items.push(newItem);
