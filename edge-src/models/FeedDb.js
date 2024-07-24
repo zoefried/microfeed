@@ -274,10 +274,26 @@ export default class FeedDb {
         } else {
           contentJson['items'].sort((a, b) => (a.pubDateMs - b.pubDateMs));
         }
-        contentJson['items'].forEach((itemJson) => {
+
+        // contentJson['items'].forEach((itemJson) => {
+        //   nextCursor = itemJson.pubDateMs;
+        //   if (!prevCursor) {
+        //     prevCursor = itemJson.pubDateMs;
+        //   }
+        // });
+
+        contentJson['items'].forEach((itemJson, index) => {
           nextCursor = itemJson.pubDateMs;
           if (!prevCursor) {
             prevCursor = itemJson.pubDateMs;
+          }
+          if (index > 0) {
+            const prevItem = contentJson['items'][index - 1];
+            itemJson['prevItemUrl'] = `/items/${prevItem.id}`;
+          }
+          if (index < contentJson['items'].length - 1) {
+            const nextItem = contentJson['items'][index + 1];
+            itemJson['nextItemUrl'] = `/items/${nextItem.id}`;
           }
         });
 

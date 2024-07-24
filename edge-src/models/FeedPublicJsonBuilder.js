@@ -286,41 +286,41 @@ export default class FeedPublicJsonBuilder {
     return newItem;
   }
 
-  _addNextAndPrevUrls(item, existingitems) {
-    console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
-    if (existingitems.length < 2) {
-      return;
-    }
+  // _addNextAndPrevUrls(item, existingitems) {
+  //   console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
+  //   if (existingitems.length < 2) {
+  //     return;
+  //   }
 
-    const index = existingitems.findIndex(element => element.id === item.id);
-    if (index < 0) {
-      return;
-    }
+  //   const index = existingitems.findIndex(element => element.id === item.id);
+  //   if (index < 0) {
+  //     return;
+  //   }
     
-    const newestToOldest = existingitems[0].pubDateMs > existingitems[1].pubDateMs;
+  //   const newestToOldest = existingitems[0].pubDateMs > existingitems[1].pubDateMs;
 
-    if (index === 0) {
-      if (newestToOldest) {
-        item.nextItemUrl = existingitems[1].webUrl;
-      } else {
-        item.prevItemUrl = existingitems[1].webUrl;
-      }
-    } else if (index === existingitems.length - 1) {
-      if (newestToOldest) {
-        item.prevItemUrl = existingitems[1].webUrl;
-      } else {
-        item.nextItemUrl = existingitems[1].webUrl;
-      }
-    } else {
-      if (newestToOldest) {
-        item.nextItemUrl = existingitems[index + 1].webUrl;
-        item.prevItemUrl = existingitems[index - 1].webUrl;
-      } else {
-        item.nextItemUrl = existingitems[index - 1].webUrl;        
-        item.prevItemUrl = existingitems[index + 1].webUrl;
-      }
-    }
-  }
+  //   if (index === 0) {
+  //     if (newestToOldest) {
+  //       item.nextItemUrl = existingitems[1].webUrl;
+  //     } else {
+  //       item.prevItemUrl = existingitems[1].webUrl;
+  //     }
+  //   } else if (index === existingitems.length - 1) {
+  //     if (newestToOldest) {
+  //       item.prevItemUrl = existingitems[1].webUrl;
+  //     } else {
+  //       item.nextItemUrl = existingitems[1].webUrl;
+  //     }
+  //   } else {
+  //     if (newestToOldest) {
+  //       item.nextItemUrl = existingitems[index + 1].webUrl;
+  //       item.prevItemUrl = existingitems[index - 1].webUrl;
+  //     } else {
+  //       item.nextItemUrl = existingitems[index - 1].webUrl;        
+  //       item.prevItemUrl = existingitems[index + 1].webUrl;
+  //     }
+  //   }
+  // }
 
   getJsonData() {
     const publicContent = {
