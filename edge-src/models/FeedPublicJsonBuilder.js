@@ -281,6 +281,7 @@ export default class FeedPublicJsonBuilder {
     if (item.nextItemUrl) {
       _microfeed['next_item_url'] = item.nextItemUrl;
     }
+    console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
 
     newItem['_microfeed'] = _microfeed;
     return newItem;
