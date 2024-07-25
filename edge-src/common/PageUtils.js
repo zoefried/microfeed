@@ -155,6 +155,9 @@ export class JsonResponseBuilder extends ResponseBuilder {
         }
       }
     }
+
+    console.log('this.jsonData:', this.jsonData); // Added console.log here
+
     const newResponse = new Response(JSON.stringify(this.jsonData), res);
     newResponse.headers.set('Access-Control-Allow-Origin', '*');
     return newResponse;
