@@ -12,7 +12,7 @@ import {isValidMediaFile} from "../../common-src/MediaFileUtils";
 const {MICROFEED_VERSION} = require('../../common-src/Version');
 
 export default class FeedPublicJsonBuilder {
-  constructor(content, baseUrl, request, forOneItem = false) {
+  constructor(content, baseUrl, request, forOneItem = false, prevItem, nextItem) {
     this.content = content;
     this.settings = content.settings || {};
     this.webGlobalSettings = this.settings.webGlobalSettings || {};
