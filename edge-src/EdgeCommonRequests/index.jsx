@@ -66,8 +66,13 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
        return JsonResponseBuilder.Response404();  // Item not found
      }
 
-    const prevItem = allItems[itemIndex - 1];
+    // Get the next and previous items
     const nextItem = allItems[itemIndex + 1];
+    const prevItem = allItems[itemIndex - 1];
+
+    // Set the next and previous item links
+    const next_item_link = nextItem ? `/items/${nextItem.id}` : null;
+    const prev_item_link = prevItem ? `/items/${prevItem.id}` : null;
 
     return jsonResponseBuilder.getResponse({
       isValid: (jsonData) => {
