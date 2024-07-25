@@ -41,11 +41,16 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
     const allItems = allItemsResponse.items;
 
+    // Check if allItems is defined and is an array
+    if (!Array.isArray(allItems)) {
+      return JsonResponseBuilder.Response404();
+    }
+
     // Find the requested item, the previous item, and the next item
     const itemIndex = allItems.findIndex(item => item.id === theItemId);
     const prevItem = allItems[itemIndex - 1];
     const nextItem = allItems[itemIndex + 1];
-    
+
     return jsonResponseBuilder.getResponse({
       isValid: (jsonData) => {
         const item = jsonData.items && jsonData.items.length > 0 ? jsonData.items[0] : null;
