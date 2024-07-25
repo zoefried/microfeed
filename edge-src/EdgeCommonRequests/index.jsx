@@ -43,6 +43,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
 
     // Check if allItems is defined and is an array
     if (!Array.isArray(allItems)) {
+      console.log('allItems is not an array:', allItems);
       return JsonResponseBuilder.Response404();
     }
 
@@ -51,6 +52,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
 
     // Check if the item was found
     if (itemIndex === -1) {
+      console.log('Item not found in allItems:', theItemId);
       return JsonResponseBuilder.Response404();  // Item not found
     }
 
