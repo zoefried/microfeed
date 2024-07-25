@@ -83,6 +83,8 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
         return true;
       },
       checkIsAllowed,
+      next_item_link,
+      prev_item_link,
     });
   }
   return JsonResponseBuilder.Response404();
