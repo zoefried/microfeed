@@ -40,6 +40,12 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     });
     const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
     console.log('allItemsResponse:', allItemsResponse);
+
+    if (allItemsResponse instanceof Response) {
+      const jsonData = await allItemsResponse.json();
+      console.log('jsonData:', jsonData);
+    }
+    
     console.log('allItemsResponse.items:', allItemsResponse.items);
     const allItems = allItemsResponse.items;
 
