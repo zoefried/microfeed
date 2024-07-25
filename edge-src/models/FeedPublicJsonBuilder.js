@@ -330,6 +330,7 @@ export default class FeedPublicJsonBuilder {
     console.log('GETTING JSON DATA');
     const {items} = this.content;
     const existingitems = items || [];
+    console.log(`with ${existingitems.length} total items`);
     publicContent['items'] = [];
     existingitems.forEach((item) => {
       if (![STATUSES.PUBLISHED, STATUSES.UNLISTED].includes(item.status)) {
