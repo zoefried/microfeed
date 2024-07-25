@@ -39,6 +39,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
       },
     });
     const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
+    console.log('allItemsResponse:', allItemsResponse);
     const allItems = allItemsResponse.items;
 
     // Check if allItems is defined and is an array
