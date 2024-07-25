@@ -48,6 +48,12 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
 
     // Find the requested item, the previous item, and the next item
     const itemIndex = allItems.findIndex(item => item.id === theItemId);
+
+    // Check if the item was found
+    if (itemIndex === -1) {
+      return JsonResponseBuilder.Response404();  // Item not found
+    }
+
     const prevItem = allItems[itemIndex - 1];
     const nextItem = allItems[itemIndex + 1];
 
