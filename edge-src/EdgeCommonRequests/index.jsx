@@ -50,11 +50,11 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
       console.log('allItems from index.jsx:', allItems);
     }
 
-    console.log('allItemsResponse.items:', allItemsResponse.items);
    // const allItems = allItemsResponse.items;
    //this code provided by Copilot
     const jsonData = await allItemsResponse.json();
     const allItems = jsonData.items;
+    console.log('allItems from index.jsx:', allItems);
 
     // Check if allItems is defined and is an array
     if (!Array.isArray(allItems)) {
