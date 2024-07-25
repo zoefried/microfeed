@@ -19,6 +19,10 @@ export default class FeedPublicJsonBuilder {
     this.publicBucketUrl = this.webGlobalSettings.publicBucketUrl || '';
     this.baseUrl = baseUrl;
     this.forOneItem = forOneItem;
+    //couple new lines
+    this.prevItem = prevItem;
+    this.nextItem = nextItem;
+    //end new lines
     this.request = request;
   }
 
@@ -330,7 +334,6 @@ export default class FeedPublicJsonBuilder {
     console.log('GETTING JSON DATA');
     const {items} = this.content;
     const existingitems = items || [];
-    console.log(`with ${existingitems.length} total items`);
     publicContent['items'] = [];
     existingitems.forEach((item) => {
       if (![STATUSES.PUBLISHED, STATUSES.UNLISTED].includes(item.status)) {
@@ -340,6 +343,11 @@ export default class FeedPublicJsonBuilder {
       // this._addNextAndPrevUrls(item, existingitems);
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
+
+      // Add next_item_link and prev_item_link to the item
+      newItem.next_item_link = existingitems[index + 1] ? `${this.baseUrl}/items/${existingitems[index + 1].id}` : null;
+      newItem.prev_item_link = existingitems[index - 1] ? `${this.baseUrl}/items/${existingitems[index - 1].id}` : null;
+   
       console.log('Generating JSON for item:', newItem);
       console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
 

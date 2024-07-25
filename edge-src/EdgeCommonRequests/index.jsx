@@ -31,6 +31,21 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
       },
       limit: 1,
     });
+
+     // Fetch all items
+     const allItemsResponseBuilder = new JsonResponseBuilder(env, request, {
+      queryKwargs: {
+        status: STATUSES.PUBLISHED,
+      },
+    });
+    const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
+    const allItems = allItemsResponse.items;
+
+    // Find the requested item, the previous item, and the next item
+    const itemIndex = allItems.findIndex(item => item.id === theItemId);
+    const prevItem = allItems[itemIndex - 1];
+    const nextItem = allItems[itemIndex + 1];
+    
     return jsonResponseBuilder.getResponse({
       isValid: (jsonData) => {
         const item = jsonData.items && jsonData.items.length > 0 ? jsonData.items[0] : null;
