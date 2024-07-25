@@ -33,13 +33,15 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     });
 
      // Fetch all items
+     console.log('Starting to build allItemsResponse');
      const allItemsResponseBuilder = new JsonResponseBuilder(env, request, {
       queryKwargs: {
         status: STATUSES.PUBLISHED,
       },
     });
+    console.log('Built allItemsResponseBuilder:', allItemsResponseBuilder);
     const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
-    console.log('allItemsResponse:', allItemsResponse);
+    console.log('Got allItemsResponse:', allItemsResponse);
 
     if (allItemsResponse instanceof Response) {
       const jsonData = await allItemsResponse.json();
@@ -49,7 +51,10 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     }
 
     console.log('allItemsResponse.items:', allItemsResponse.items);
-    const allItems = allItemsResponse.items;
+   // const allItems = allItemsResponse.items;
+   //this code provided by Copilot
+    const jsonData = await allItemsResponse.json();
+    const allItems = jsonData.items;
 
     // Check if allItems is defined and is an array
     if (!Array.isArray(allItems)) {
