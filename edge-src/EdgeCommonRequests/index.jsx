@@ -35,41 +35,36 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
      // Fetch all items
      console.log('Starting to build allItemsResponse');
      const allItemsResponseBuilder = new JsonResponseBuilder(env, request, {
-      queryKwargs: {
-        status: STATUSES.PUBLISHED,
-      },
-    });
-    console.log('Built allItemsResponseBuilder:', allItemsResponseBuilder);
-    const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
-    console.log('Got allItemsResponse:', allItemsResponse);
-
-    if (allItemsResponse instanceof Response) {
-      const jsonData = await allItemsResponse.json();
-      console.log('jsonData from index.jsx:', jsonData);
-      const allItems = jsonData.items;
-      console.log('allItems from index.jsx:', allItems);
-    }
-
-   // const allItems = allItemsResponse.items;
-   //this code provided by Copilot
-    const jsonData = await allItemsResponse.json();
-    const allItems = jsonData.items;
-    console.log('allItems from index.jsx:', allItems);
-
-    // Check if allItems is defined and is an array
-    if (!Array.isArray(allItems)) {
-      console.log('allItems is not an array:', allItems);
-      return JsonResponseBuilder.Response404();
-    }
-
-    // Find the requested item, the previous item, and the next item
-    const itemIndex = allItems.findIndex(item => item.id === theItemId);
-
-    // Check if the item was found
-    if (itemIndex === -1) {
-      console.log('Item not found in allItems:', theItemId);
-      return JsonResponseBuilder.Response404();  // Item not found
-    }
+       queryKwargs: {
+         status: STATUSES.PUBLISHED,
+       },
+     });
+     console.log('Built allItemsResponseBuilder:', allItemsResponseBuilder);
+     const allItemsResponse = await allItemsResponseBuilder.getResponse({ checkIsAllowed });
+     console.log('Got allItemsResponse:', allItemsResponse);
+     
+     let allItems;
+     if (allItemsResponse instanceof Response) {
+       const jsonData = await allItemsResponse.json();
+       console.log('jsonData from index.jsx:', jsonData);
+       allItems = jsonData.items;
+       console.log('allItems from index.jsx:', allItems);
+     }
+     
+     // Check if allItems is defined and is an array
+     if (!Array.isArray(allItems)) {
+       console.log('allItems is not an array:', allItems);
+       return JsonResponseBuilder.Response404();
+     }
+     
+     // Find the requested item, the previous item, and the next item
+     const itemIndex = allItems.findIndex(item => item.id === theItemId);
+     
+     // Check if the item was found
+     if (itemIndex === -1) {
+       console.log('Item not found in allItems:', theItemId);
+       return JsonResponseBuilder.Response404();  // Item not found
+     }
 
     const prevItem = allItems[itemIndex - 1];
     const nextItem = allItems[itemIndex + 1];
