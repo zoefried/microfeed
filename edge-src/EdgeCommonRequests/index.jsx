@@ -43,9 +43,11 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
 
     if (allItemsResponse instanceof Response) {
       const jsonData = await allItemsResponse.json();
-      console.log('jsonData:', jsonData);
+      console.log('jsonData from index.jsx:', jsonData);
+      const allItems = jsonData.items;
+      console.log('allItems from index.jsx:', allItems);
     }
-    
+
     console.log('allItemsResponse.items:', allItemsResponse.items);
     const allItems = allItemsResponse.items;
 
