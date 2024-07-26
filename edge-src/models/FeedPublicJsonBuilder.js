@@ -350,6 +350,8 @@ export default class FeedPublicJsonBuilder {
    
       console.log('Generating JSON for item:', newItem);
       console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
+      console.log('Next FPJB.js', newItem.next_item_link);
+      console.log('Prev FBJB.js', newItem.prev_item_link);
 
       publicContent.items.push(newItem);
     })
