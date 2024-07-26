@@ -280,10 +280,10 @@ export default class FeedPublicJsonBuilder {
       _microfeed['date_published_ms'] = item.pubDateMs;
     }
     if (item.prevItemUrl) {
-      _microfeed['prev_item_url'] = item.prevItemUrl;
+      _microfeed['prev_item_url'] = item.prev_item_link;
     }
     if (item.nextItemUrl) {
-      _microfeed['next_item_url'] = item.nextItemUrl;
+      _microfeed['next_item_url'] = item.next_item_link;
     }
     newItem['_microfeed'] = _microfeed;
     return newItem;
