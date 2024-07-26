@@ -75,8 +75,8 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     const prev_item_link = prevItem ? `/items/${prevItem.id}` : null;
 
     // Log the next and previous item links
-    console.log('next_item_link:', next_item_link);
-    console.log('prev_item_link:', prev_item_link);
+    console.log('next_item_link in index.jsx', next_item_link);
+    console.log('prev_item_link in index.jsx', prev_item_link);
 
 
     return jsonResponseBuilder.getResponse({

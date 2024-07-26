@@ -280,10 +280,10 @@ export default class FeedPublicJsonBuilder {
       _microfeed['date_published_ms'] = item.pubDateMs;
     }
     if (item.prevItemUrl) {
-      _microfeed['prev_item_url'] = item.prev_item_link;
+      _microfeed['prev_item_url'] = item.prevItemUrl;
     }
     if (item.nextItemUrl) {
-      _microfeed['next_item_url'] = item.next_item_link;
+      _microfeed['next_item_url'] = item.nextItemUrl;
     }
     newItem['_microfeed'] = _microfeed;
     return newItem;
@@ -351,6 +351,9 @@ export default class FeedPublicJsonBuilder {
       console.log('Generating JSON for item:', newItem);
       console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
 
+          // Log the next and previous item links
+    console.log('next_item_link in FPJB.js', next_item_link);
+    console.log('prev_item_link in FPJB.js', prev_item_link);
       publicContent.items.push(newItem);
     })
 
