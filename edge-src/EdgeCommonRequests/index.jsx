@@ -81,14 +81,18 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
         if (!item) {
           return false;
         }
+
+        // Add the next and previous item links to the current item
+        item.next_item_link = next_item_link;
+        item.prev_item_link = prev_item_link;
+
+
         return true;
       },
       checkIsAllowed,
-      next_item_link,
-      prev_item_link,
     });
   }
-  console.log('JsonResponseBuilder', JsonResponseBuilder.Response404());
+
   return JsonResponseBuilder.Response404();
 }
 
