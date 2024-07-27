@@ -1,6 +1,6 @@
 import { JsonResponseBuilder } from "../common/PageUtils";
 import { STATUSES } from "../../common-src/Constants";
-import { getIdFromSlug, PUBLIC_URLS } from "../../common-src/StringUtils";
+import { getIdFromSlug } from "../../common-src/StringUtils";
 import { S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
@@ -72,9 +72,8 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     const prevItem = allItems[itemIndex - 1];
 
     // Set the next and previous item links
-    const next_item_link = nextItem ? `/i/${nextItem.id}` : null;
-  //  const prev_item_link = prevItem ? `/i/${prevItem.id}` : null;
-    const prev_item_link = prevItem ? PUBLIC_URLS.webItem(prevItem.id, prevItem.title, baseUrl) : null;
+    const next_item_link = nextItem ? `~/i/${nextItem.id}` : null;
+    const prev_item_link = prevItem ? `~/i/${prevItem.id}` : null;
 
 
     return jsonResponseBuilder.getResponse({
