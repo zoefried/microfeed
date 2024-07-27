@@ -19,10 +19,6 @@ export default class FeedPublicJsonBuilder {
     this.publicBucketUrl = this.webGlobalSettings.publicBucketUrl || '';
     this.baseUrl = baseUrl;
     this.forOneItem = forOneItem;
-    //couple new lines
-    //this.prevItem = prevItem;
-   //this.nextItem = nextItem;
-    //end new lines
     this.request = request;
   }
 
@@ -340,7 +336,6 @@ export default class FeedPublicJsonBuilder {
         return;
       }
       this._decorateForItem(item, this.baseUrl);
-      // this._addNextAndPrevUrls(item, existingitems);
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
 
