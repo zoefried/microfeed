@@ -280,13 +280,11 @@ export default class FeedPublicJsonBuilder {
       _microfeed['date_published_ms'] = item.pubDateMs;
     }
     if (item.prevItemUrl) {
-      console.log('microfeed prev item url is a go')
-      console.log('microfeed prev item url', newItem.prev_item_link);
+      console.log('microfeed prev item url', item.prevItemUrl);
       _microfeed['prev_item_url'] = newItem.prev_item_link;
     }
     if (item.nextItemUrl) {
-      console.log('microfeed next item url is a go')
-      console.log('microfeed next item url', newItem.next_item_link);
+      console.log('microfeed next item url', item.nextItemUrl);
       _microfeed['next_item_url'] = newItem.next_item_link;
     }
     newItem['_microfeed'] = _microfeed;
