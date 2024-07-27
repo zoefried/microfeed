@@ -49,7 +49,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
        const jsonData = await allItemsResponse.json();
    //   console.log('jsonData from index.jsx:', jsonData);
        allItems = jsonData.items;
-       console.log('allItems from index.jsx:', allItems);
+   //  console.log('allItems from index.jsx:', allItems);
      }
      
      // Check if allItems is defined and is an array
@@ -86,6 +86,9 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
         // Add the next and previous item links to the current item
         item.next_item_link = next_item_link;
         item.prev_item_link = prev_item_link;
+
+        // Log the current item to the console
+        console.log(item);
 
         return true;
       },
