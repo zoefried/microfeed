@@ -71,7 +71,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     const prevItem = allItems[itemIndex - 1];
 
     // Set the next and previous item links
-    const next_item_link = nextItem ? `/i/${nextItem.id}` : null;
+    const next_item_link = nextItem ? `{baseUrl}/i/${nextItem.id}` : null;
     const prev_item_link = prevItem ? `/i/${prevItem.id}` : null;
 
 
