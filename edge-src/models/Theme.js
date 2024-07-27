@@ -120,6 +120,8 @@ export default class Theme {
     const data = {
       ...this.jsonData,
       item,
+      next_item_link: item.next_item_link,
+      prev_item_link: item.prev_item_link,
     };
 
     console.log('data for mustache:', data);
