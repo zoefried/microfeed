@@ -20,8 +20,8 @@ export default class FeedPublicJsonBuilder {
     this.baseUrl = baseUrl;
     this.forOneItem = forOneItem;
     //couple new lines
-    this.prevItem = prevItem;
-    this.nextItem = nextItem;
+    //this.prevItem = prevItem;
+   //this.nextItem = nextItem;
     //end new lines
     this.request = request;
   }
@@ -344,10 +344,6 @@ export default class FeedPublicJsonBuilder {
       const mediaFile = item.mediaFile || {};
       const newItem = this._buildPublicContentItem(item, mediaFile);
 
-      // Add next_item_link and prev_item_link to the item
-      //newItem.next_item_link = existingitems[index + 1] ? `${this.baseUrl}/items/${existingitems[index + 1].id}` : null;
-      //newItem.prev_item_link = existingitems[index - 1] ? `${this.baseUrl}/items/${existingitems[index - 1].id}` : null;
-  
       publicContent.items.push(newItem);
     })
 

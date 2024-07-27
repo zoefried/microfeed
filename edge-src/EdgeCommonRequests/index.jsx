@@ -86,7 +86,6 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
         item.next_item_link = next_item_link;
         item.prev_item_link = prev_item_link;
 
-
         return true;
       },
       checkIsAllowed,
