@@ -74,10 +74,6 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
     const next_item_link = nextItem ? `/items/${nextItem.id}` : null;
     const prev_item_link = prevItem ? `/items/${prevItem.id}` : null;
 
-    // Log the next and previous item links
-    console.log('next_item_link in index.jsx', next_item_link);
-    console.log('prev_item_link in index.jsx', prev_item_link);
-
 
     return jsonResponseBuilder.getResponse({
       isValid: (jsonData) => {
@@ -92,6 +88,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
       prev_item_link,
     });
   }
+  console.log('JsonResponseBuilder', JsonResponseBuilder.Response404());
   return JsonResponseBuilder.Response404();
 }
 
