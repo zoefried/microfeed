@@ -345,14 +345,9 @@ export default class FeedPublicJsonBuilder {
       const newItem = this._buildPublicContentItem(item, mediaFile);
 
       // Add next_item_link and prev_item_link to the item
-      newItem.next_item_link = existingitems[index + 1] ? `${this.baseUrl}/items/${existingitems[index + 1].id}` : null;
-      newItem.prev_item_link = existingitems[index - 1] ? `${this.baseUrl}/items/${existingitems[index - 1].id}` : null;
-   
-      console.log('Generating JSON for item:', newItem);
-      console.log(`getting n and p urls for item ${item.id} with ${existingitems.length} total items`);
-        // Add logging for next and previous items and their IDs
-
-
+      //newItem.next_item_link = existingitems[index + 1] ? `${this.baseUrl}/items/${existingitems[index + 1].id}` : null;
+      //newItem.prev_item_link = existingitems[index - 1] ? `${this.baseUrl}/items/${existingitems[index - 1].id}` : null;
+  
       publicContent.items.push(newItem);
     })
 
