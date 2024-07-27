@@ -94,4 +94,24 @@
       {{/items.0.content_html}}
     </div>
   </section>
+
+  <!-- added by zoe to try to get links to display -->
+  <section>
+  <div class="flex justify-center mt-4">
+    {{#items.0.prev_item_link}}
+    <div class="px-2">
+      <a href={{items.0.prev_item_link}}"><span
+        class="icon-arrow-left"> Prev</span></a>
+    </div>
+    {{/items.0.prev_item_link}}
+
+    {{#items.0.next_item_link}}
+    <div class="px-2">
+      <a href={{items.0.next_item_link}}"><span
+        class="icon-arrow-right"> Next</span></a>
+    </div>
+    {{/items.0.next_item_link}}
+  </div>
+</section>
+ <!-- end of section added by zoe to try to get links to display -->
 </main>
