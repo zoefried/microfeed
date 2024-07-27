@@ -115,14 +115,14 @@ export default class Theme {
 
   getWebItem(item) {
     const tmpl = this.getWebItemTmpl();
-    
+
     //Per Copilot, defining data before using it
     const data = {
       ...this.jsonData,
       item,
     };
 
-    console.log(data);
+    console.log('data for mustache:', data);
     //delete the above after sorting this out with Copilot
 
     const html = Mustache.render(tmpl, {
