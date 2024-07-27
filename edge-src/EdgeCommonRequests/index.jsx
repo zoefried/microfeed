@@ -47,9 +47,9 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
      let allItems;
      if (allItemsResponse instanceof Response) {
        const jsonData = await allItemsResponse.json();
-       console.log('jsonData from index.jsx:', jsonData);
+   //   console.log('jsonData from index.jsx:', jsonData);
        allItems = jsonData.items;
-   //    console.log('allItems from index.jsx:', allItems);
+       console.log('allItems from index.jsx:', allItems);
      }
      
      // Check if allItems is defined and is an array
