@@ -121,6 +121,9 @@ export default class Theme {
       // TODO: Remove "item". We don't need this "item" field any more. Use "items.0" instead.
       item,
     });
+
+    console.log(data);
+
     return {
       html,
     };

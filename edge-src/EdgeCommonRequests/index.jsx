@@ -88,7 +88,7 @@ export async function onFetchItemRequestGet({ params, env, request }, checkIsAll
         item.prev_item_link = prev_item_link;
 
         // Log the current item to the console
-        console.log(item);
+       // console.log(item);
 
         return true;
       },
