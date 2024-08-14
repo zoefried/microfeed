@@ -203,7 +203,7 @@ export default class FeedPublicJsonBuilder {
       web_url: item.webUrl,
       json_url: item.jsonUrl,
       rss_url: item.rssUrl,
-      guid: item.guid,
+    //  guid: item.guid,
       status: ITEM_STATUSES_DICT[item.status] ? ITEM_STATUSES_DICT[item.status].name : 'published',
     };
 
